@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findAdjacentActiveMonth, findNearestActiveMonth, getActiveMonths } from "@/lib/calendar-utils";
+import { findAdjacentActiveMonth, findNearestActiveMonth, getActiveMonths, getActiveYears } from "@/lib/calendar-utils";
 
 describe("getActiveMonths", () => {
   it("collects and sorts the month prefix of every dated key", () => {
@@ -9,6 +9,17 @@ describe("getActiveMonths", () => {
 
   it("is empty when there is no data at all", () => {
     expect(getActiveMonths({})).toEqual([]);
+  });
+});
+
+describe("getActiveYears", () => {
+  it("collects and sorts the year prefix of every dated key", () => {
+    const stats = { "2024-06-12": 1, "2013-01-02": 3, "2024-12-31": 2 };
+    expect(getActiveYears(stats)).toEqual([2013, 2024]);
+  });
+
+  it("is empty when there is no data at all", () => {
+    expect(getActiveYears({})).toEqual([]);
   });
 });
 

@@ -25,6 +25,15 @@ export const getActiveMonths = (activityStats: Record<string, number>): string[]
   return [...months].sort();
 };
 
+/** Years holding at least one entry, sorted ascending. */
+export const getActiveYears = (activityStats: Record<string, number>): number[] => {
+  const years = new Set<number>();
+  for (const date of Object.keys(activityStats)) {
+    years.add(Number(date.slice(0, 4)));
+  }
+  return [...years].sort((a, b) => a - b);
+};
+
 /**
  * The closest month with entries strictly before (`direction` -1) or after (`direction` 1)
  * `currentMonth`, or null when the data holds no such month — the caller then stays put.
