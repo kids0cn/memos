@@ -1,10 +1,13 @@
 package test
 
 import (
+	"bytes"
 	"context"
+	"log/slog"
 	"testing"
 	"time"
 
+	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -296,7 +299,7 @@ func TestAuthenticatorPAT(t *testing.T) {
 
 		authenticator := auth.NewAuthenticator(ts.Store, ts.Secret)
 		_, _, err := authenticator.AuthenticateByPAT(ctx, "invalid-token-without-prefix")
-		assert.Error(t, err)
+		assert.ErrorIs(t, err, auth.ErrInvalidPAT)
 		assert.Contains(t, err.Error(), "invalid PAT format")
 	})
 
@@ -309,7 +312,13 @@ func TestAuthenticatorPAT(t *testing.T) {
 
 		authenticator := auth.NewAuthenticator(ts.Store, ts.Secret)
 		_, _, err := authenticator.AuthenticateByPAT(ctx, token)
-		assert.Error(t, err)
+		assert.ErrorIs(t, err, auth.ErrInvalidPAT)
+
+		// A rejected token is anonymous, not an error, for every entry point.
+		user, err := authenticator.AuthenticateToUser(ctx, "Bearer "+token, "")
+		require.NoError(t, err)
+		assert.Nil(t, user)
+		assert.Nil(t, authenticator.Authenticate(ctx, "Bearer "+token))
 	})
 
 	t.Run("fails with expired PAT", func(t *testing.T) {
@@ -337,7 +346,7 @@ func TestAuthenticatorPAT(t *testing.T) {
 		// Try to authenticate
 		authenticator := auth.NewAuthenticator(ts.Store, ts.Secret)
 		_, _, err = authenticator.AuthenticateByPAT(ctx, token)
-		assert.Error(t, err)
+		assert.ErrorIs(t, err, auth.ErrInvalidPAT)
 		assert.Contains(t, err.Error(), "expired")
 	})
 
@@ -404,8 +413,45 @@ func TestAuthenticatorPAT(t *testing.T) {
 		// Try to authenticate
 		authenticator := auth.NewAuthenticator(ts.Store, ts.Secret)
 		_, _, err = authenticator.AuthenticateByPAT(ctx, token)
-		assert.Error(t, err)
+		assert.ErrorIs(t, err, auth.ErrInvalidPAT)
 		assert.Contains(t, err.Error(), "archived")
+	})
+
+	t.Run("reports a store failure instead of a rejected token", func(t *testing.T) {
+		ts := NewTestService(t)
+		defer ts.Cleanup()
+
+		user, err := ts.CreateRegularUser(ctx, "pat-corrupt")
+		require.NoError(t, err)
+
+		// Store a PAT row the server cannot decode: lastUsedAt is not a timestamp.
+		token := auth.GeneratePersonalAccessToken()
+		tokenHash := auth.HashPersonalAccessToken(token)
+		_, err = ts.Store.GetDriver().UpsertUserSetting(ctx, &store.UserSetting{
+			UserID: user.ID,
+			Key:    storepb.UserSetting_PERSONAL_ACCESS_TOKENS,
+			Value:  `{"tokens":[{"tokenId":"pat-corrupt","tokenHash":"` + tokenHash + `","lastUsedAt":""}]}`,
+		})
+		require.NoError(t, err)
+
+		authenticator := auth.NewAuthenticator(ts.Store, ts.Secret)
+
+		_, _, err = authenticator.AuthenticateByPAT(ctx, token)
+		require.Error(t, err)
+		assert.False(t, errors.Is(err, auth.ErrInvalidPAT), "a store failure must not look like a rejected token: %v", err)
+
+		// AuthenticateToUser propagates the failure to its caller.
+		_, err = authenticator.AuthenticateToUser(ctx, "Bearer "+token, "")
+		require.Error(t, err)
+
+		// Authenticate treats the caller as anonymous but leaves a log entry.
+		var logs bytes.Buffer
+		previous := slog.Default()
+		slog.SetDefault(slog.New(slog.NewTextHandler(&logs, nil)))
+		defer slog.SetDefault(previous)
+
+		assert.Nil(t, authenticator.Authenticate(ctx, "Bearer "+token))
+		assert.Contains(t, logs.String(), "failed to resolve bearer token")
 	})
 }
 
