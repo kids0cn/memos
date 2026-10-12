@@ -123,6 +123,7 @@
     "explore": "Preskúmajte",
     "filter": "Filter",
     "home": "Domov",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Časová os",
     "inbox": "Doručená pošta",
     "language": "Jazyk",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Žiadne poznámky v {{month}}",
     "no-memos-on-day": "Žiadne poznámky v tento deň",
     "previous-year": "Predchádzajúci rok",
+    "select-date": "Select date",
     "select-month": "Vyberte mesiac"
   },
   "space": {

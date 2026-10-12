@@ -123,6 +123,7 @@
     "explore": "Εξερευνώ",
     "filter": "Φίλτρο",
     "home": "Σπίτι",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Χρονολόγιο",
     "inbox": "Εισερχόμενα",
     "language": "Γλώσσα",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Δεν υπάρχουν σημειώματα στο {{month}}",
     "no-memos-on-day": "Δεν υπάρχουν σημειώματα αυτήν την ημέρα",
     "previous-year": "Προηγούμενο έτος",
+    "select-date": "Select date",
     "select-month": "Επιλογή μήνα"
   },
   "space": {

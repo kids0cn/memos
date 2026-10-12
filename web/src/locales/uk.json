@@ -84,6 +84,7 @@
     "explore": "Дослідити",
     "filter": "Фільтр",
     "home": "Головна",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Хронологія",
     "inbox": "Вхідні",
     "language": "Мова",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Немає нотаток у {{month}}",
     "no-memos-on-day": "Немає нотаток у цей день",
     "previous-year": "Попередній рік",
+    "select-date": "Select date",
     "select-month": "Виберіть місяць"
   },
   "space": {

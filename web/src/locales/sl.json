@@ -84,6 +84,7 @@
     "explore": "Razišči",
     "filter": "Filtriraj",
     "home": "Domov",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Časovnica",
     "inbox": "Prejeto",
     "language": "Jezik",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Ni beležk v {{month}}",
     "no-memos-on-day": "Ta dan ni beležk",
     "previous-year": "Prejšnje leto",
+    "select-date": "Select date",
     "select-month": "Izberite mesec"
   },
   "space": {

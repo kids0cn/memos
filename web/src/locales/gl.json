@@ -84,6 +84,7 @@
     "explore": "Descubrir",
     "filter": "Filtro",
     "home": "Inicio",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Cronoloxía",
     "inbox": "Caixa de entrada",
     "language": "Idioma",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Non hai notas en {{month}}",
     "no-memos-on-day": "Non hai notas neste día",
     "previous-year": "Ano anterior",
+    "select-date": "Select date",
     "select-month": "Seleccionar mes"
   },
   "space": {

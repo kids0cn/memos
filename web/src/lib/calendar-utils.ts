@@ -16,6 +16,41 @@ export const addMonths = (date: Date | string, count: number): string => {
 export const formatMonthLabel = (month: string, locale: string): string =>
   dayjs(month).toDate().toLocaleString(locale, { year: "numeric", month: "long" });
 
+/** Months holding at least one entry, sorted ascending as `YYYY-MM`. */
+export const getActiveMonths = (activityStats: Record<string, number>): string[] => {
+  const months = new Set<string>();
+  for (const date of Object.keys(activityStats)) {
+    months.add(date.slice(0, 7));
+  }
+  return [...months].sort();
+};
+
+/**
+ * The closest month with entries strictly before (`direction` -1) or after (`direction` 1)
+ * `currentMonth`, or null when the data holds no such month — the caller then stays put.
+ */
+export const findAdjacentActiveMonth = (currentMonth: string, activityStats: Record<string, number>, direction: -1 | 1): string | null => {
+  const months = getActiveMonths(activityStats);
+  if (direction > 0) {
+    return months.find((month) => month > currentMonth) ?? null;
+  }
+  const earlier = months.filter((month) => month < currentMonth);
+  return earlier.length > 0 ? earlier[earlier.length - 1] : null;
+};
+
+/**
+ * The month to land on when "only months with entries" turns on: the closest month at or
+ * before `currentMonth`, else the earliest month after it, else null when there is no data.
+ */
+export const findNearestActiveMonth = (currentMonth: string, activityStats: Record<string, number>): string | null => {
+  const months = getActiveMonths(activityStats);
+  if (months.length === 0) return null;
+  if (months.includes(currentMonth)) return currentMonth;
+  const earlier = months.filter((month) => month < currentMonth);
+  if (earlier.length > 0) return earlier[earlier.length - 1];
+  return months[0];
+};
+
 /**
  * The local midnight named by `YYYY-MM-DD`, or undefined for anything else — including
  * dates JS would silently roll forward (2026-02-30 → March 2).

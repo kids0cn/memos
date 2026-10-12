@@ -84,6 +84,7 @@
     "explore": "Verkennen",
     "filter": "Filter",
     "home": "Thuis",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Tijdlijn",
     "inbox": "Postvak",
     "language": "Taal",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Geen memo's in {{month}}",
     "no-memos-on-day": "Geen memo's op deze dag",
     "previous-year": "Vorig jaar",
+    "select-date": "Select date",
     "select-month": "Selecteer maand"
   },
   "space": {

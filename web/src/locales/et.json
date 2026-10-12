@@ -123,6 +123,7 @@
     "explore": "Uurige",
     "filter": "Filter",
     "home": "Kodu",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Ajajoon",
     "inbox": "Postkast",
     "language": "Keel",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Memosid pole {{month}}",
     "no-memos-on-day": "Sel päeval memosid pole",
     "previous-year": "Eelmisel aastal",
+    "select-date": "Select date",
     "select-month": "Valige kuu"
   },
   "space": {

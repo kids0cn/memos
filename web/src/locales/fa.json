@@ -84,6 +84,7 @@
     "explore": "کاوش",
     "filter": "فیلتر",
     "home": "خانه",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "خط زمانی",
     "inbox": "صندوق ورودی",
     "language": "زبان",
@@ -953,6 +954,7 @@
     "no-memos-in-month": "هیچ یادداشتی در {{month}} وجود ندارد",
     "no-memos-on-day": "هیچ یادداشتی در این روز وجود ندارد",
     "previous-year": "سال قبل",
+    "select-date": "Select date",
     "select-month": "ماه را انتخاب کنید"
   },
   "demo": {

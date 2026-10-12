@@ -84,6 +84,7 @@
     "explore": "Utforsk",
     "filter": "Filter",
     "home": "Hjem",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Tidslinje",
     "inbox": "Innboks",
     "language": "Språk",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Ingen notater i {{month}}",
     "no-memos-on-day": "Ingen notater denne dagen",
     "previous-year": "Forrige år",
+    "select-date": "Select date",
     "select-month": "Velg måned"
   },
   "space": {

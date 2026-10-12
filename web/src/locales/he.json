@@ -157,6 +157,7 @@
     "explore": "גלה",
     "filter": "סנן",
     "home": "דף הבית",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "ציר זמן",
     "inbox": "תיבת הדואר הנכנס",
     "language": "שפה",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "אין תזכירים ב-{{month}}",
     "no-memos-on-day": "אין תזכירים ביום זה",
     "previous-year": "שנה קודמת",
+    "select-date": "Select date",
     "select-month": "בחר חודש"
   },
   "space": {

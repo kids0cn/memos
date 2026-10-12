@@ -3,31 +3,49 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { SIDEBAR_ROW_BOX_CLASSES } from "@/components/AppSidebar/SidebarRow";
 import { Button } from "@/components/ui/button";
-import { addMonths, formatMonthLabel } from "@/lib/calendar-utils";
+import { addMonths, findAdjacentActiveMonth, formatMonthLabel } from "@/lib/calendar-utils";
 import { cn } from "@/lib/utils";
 import type { MonthNavigatorProps } from "@/types/statistics";
+import { DayPicker } from "./DayPicker";
 
-export const MonthNavigator = memo(({ visibleMonth, onMonthChange }: MonthNavigatorProps) => {
-  const { i18n, t } = useTranslation();
-  const monthLabel = formatMonthLabel(visibleMonth, i18n.language);
-  const handlePrevMonth = () => onMonthChange(addMonths(visibleMonth, -1));
-  const handleNextMonth = () => onMonthChange(addMonths(visibleMonth, 1));
+export const MonthNavigator = memo(
+  ({ visibleMonth, onMonthChange, activityStats, skipEmptyMonths, selectedDate, onPickDate }: MonthNavigatorProps) => {
+    const { i18n, t } = useTranslation();
+    const monthLabel = formatMonthLabel(visibleMonth, i18n.language);
 
-  return (
-    <header className={cn(SIDEBAR_ROW_BOX_CLASSES, "mb-1.5 justify-between")}>
-      <h2 className="min-w-0 truncate font-medium tracking-[-0.015em] text-foreground/90 select-none">{monthLabel}</h2>
+    const stepMonth = (direction: -1 | 1) => {
+      // Skipping empty months stays put at the ends instead of looping.
+      const target =
+        skipEmptyMonths && activityStats
+          ? (findAdjacentActiveMonth(visibleMonth, activityStats, direction) ?? visibleMonth)
+          : addMonths(visibleMonth, direction);
+      if (target !== visibleMonth) onMonthChange(target);
+    };
 
-      <nav className="flex shrink-0 items-center gap-0.5" aria-label={t("common.month-navigation")}>
-        <Button variant="quiet" size="icon-sm" onClick={handlePrevMonth} aria-label={t("common.previous-month")}>
-          <ChevronLeftIcon className="size-4 rtl:rotate-180" strokeWidth={1.75} />
-        </Button>
+    return (
+      <header className={cn(SIDEBAR_ROW_BOX_CLASSES, "mb-1.5 justify-between")}>
+        <h2 className="min-w-0 truncate font-medium tracking-[-0.015em] text-foreground/90 select-none">
+          {onPickDate ? (
+            <DayPicker month={visibleMonth} activityStats={activityStats} selectedDate={selectedDate} onPick={onPickDate}>
+              {monthLabel}
+            </DayPicker>
+          ) : (
+            monthLabel
+          )}
+        </h2>
 
-        <Button variant="quiet" size="icon-sm" onClick={handleNextMonth} aria-label={t("common.next-month")}>
-          <ChevronRightIcon className="size-4 rtl:rotate-180" strokeWidth={1.75} />
-        </Button>
-      </nav>
-    </header>
-  );
-});
+        <nav className="flex shrink-0 items-center gap-0.5" aria-label={t("common.month-navigation")}>
+          <Button variant="quiet" size="icon-sm" onClick={() => stepMonth(-1)} aria-label={t("common.previous-month")}>
+            <ChevronLeftIcon className="size-4 rtl:rotate-180" strokeWidth={1.75} />
+          </Button>
+
+          <Button variant="quiet" size="icon-sm" onClick={() => stepMonth(1)} aria-label={t("common.next-month")}>
+            <ChevronRightIcon className="size-4 rtl:rotate-180" strokeWidth={1.75} />
+          </Button>
+        </nav>
+      </header>
+    );
+  },
+);
 
 MonthNavigator.displayName = "MonthNavigator";

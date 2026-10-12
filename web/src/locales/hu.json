@@ -84,6 +84,7 @@
     "explore": "Felfedezés",
     "filter": "Szűrő",
     "home": "Főoldal",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Idővonal",
     "inbox": "Értesítések",
     "language": "Nyelv",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Nincsenek emlékeztetők {{month}}-ben.",
     "no-memos-on-day": "Ezen a napon nincsenek emlékeztetők",
     "previous-year": "Előző év.",
+    "select-date": "Select date",
     "select-month": "Hónap kiválasztása."
   },
   "space": {

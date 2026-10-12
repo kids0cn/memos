@@ -84,6 +84,7 @@
     "explore": "კვლევა",
     "filter": "ფილტრი",
     "home": "მთავარი",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "დროის ხაზი",
     "inbox": "ინბოქსი",
     "language": "ენა",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "შეტყობინებები არ არის {{month}}-ში",
     "no-memos-on-day": "ამ დღეს შეტყობინებები არ არის",
     "previous-year": "წინა წელი",
+    "select-date": "Select date",
     "select-month": "თვის არჩევა"
   },
   "space": {

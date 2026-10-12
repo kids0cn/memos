@@ -71,6 +71,7 @@
     "no-memos-in-month": "{{month}} 没有备忘录",
     "no-memos-on-day": "这一天没有备忘录",
     "previous-year": "上一年",
+    "select-date": "选择日期",
     "select-month": "选择月份"
   },
   "demo": {
@@ -119,6 +120,7 @@
     "explore": "发现",
     "filter": "过滤器",
     "home": "主页",
+    "only-days-with-entries": "只显示有日记的日期",
     "timeline": "时间线",
     "inbox": "通知",
     "language": "语言",

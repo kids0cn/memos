@@ -84,6 +84,7 @@
     "explore": "استكشف",
     "filter": "تنقيح",
     "home": "الصفحة الرئيسية",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "الخط الزمني",
     "inbox": "الوارد",
     "language": "اللغة",
@@ -953,6 +954,7 @@
     "no-memos-in-month": "لا توجد مذكرات في {{month}}",
     "no-memos-on-day": "لا توجد مذكرات في هذا اليوم",
     "previous-year": "العام الماضي",
+    "select-date": "Select date",
     "select-month": "اختر الشهر"
   },
   "demo": {

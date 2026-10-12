@@ -9,13 +9,20 @@ export interface CalendarCellProps {
   maxCount: number;
   tooltipText: string;
   onClick?: (date: string) => void;
+  /** Render count==0 days as blank placeholders: no numeral, nothing to click. */
+  hideEmptyDays?: boolean;
 }
 
 /** The cell spans its whole column and takes the pointer; the chip inside it carries the fill. */
 const CELL_CLASSES = "group/day flex w-full items-center justify-center select-none";
 
-export const CalendarCell = memo(({ day, maxCount, tooltipText, onClick }: CalendarCellProps) => {
+export const CalendarCell = memo(({ day, maxCount, tooltipText, onClick, hideEmptyDays }: CalendarCellProps) => {
   const isInteractive = Boolean(onClick);
+
+  // The placeholder keeps the 7-column grid aligned while the day itself stays invisible.
+  if (hideEmptyDays && day.count === 0) {
+    return <div className={CELL_CLASSES} aria-hidden="true" data-slot="calendar-empty-cell" />;
+  }
 
   if (!day.isCurrentMonth) {
     return (

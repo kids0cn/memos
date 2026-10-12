@@ -32,43 +32,46 @@ export const useWeekdayLabels = (weekStartDayOffset: number) => {
   );
 };
 
-export const MonthCalendar = memo(({ month, data, selectedDate, onClick, timeBasis = "create_time" }: MonthCalendarProps) => {
-  const t = useTranslate();
-  const { generalSetting } = useInstance();
-  const weekDays = useWeekdayLabels(generalSetting.weekStartDayOffset);
-  const maxCount = useMemo(() => calculateMaxCount(data), [data]);
-  const days = useMonthDays({
-    month,
-    data,
-    weekStartDayOffset: generalSetting.weekStartDayOffset,
-    today: getToday(),
-    selectedDate,
-  });
+export const MonthCalendar = memo(
+  ({ month, data, selectedDate, onClick, timeBasis = "create_time", hideEmptyDays }: MonthCalendarProps) => {
+    const t = useTranslate();
+    const { generalSetting } = useInstance();
+    const weekDays = useWeekdayLabels(generalSetting.weekStartDayOffset);
+    const maxCount = useMemo(() => calculateMaxCount(data), [data]);
+    const days = useMonthDays({
+      month,
+      data,
+      weekStartDayOffset: generalSetting.weekStartDayOffset,
+      today: getToday(),
+      selectedDate,
+    });
 
-  return (
-    <div className="flex flex-col" role="group" aria-label={`Calendar for ${month}`}>
-      {/* Every day button already announces its full date, so the initials are decoration. */}
-      <div className="mb-1.5 grid grid-cols-7 gap-1" aria-hidden="true">
-        {weekDays.map((label, index) => (
-          <div key={index} className={cn("flex h-5 items-center justify-center", WEEKDAY_LABEL_CLASSES)}>
-            {Array.from(label)[0]}
-          </div>
-        ))}
-      </div>
+    return (
+      <div className="flex flex-col" role="group" aria-label={`Calendar for ${month}`}>
+        {/* Every day button already announces its full date, so the initials are decoration. */}
+        <div className="mb-1.5 grid grid-cols-7 gap-1" aria-hidden="true">
+          {weekDays.map((label, index) => (
+            <div key={index} className={cn("flex h-5 items-center justify-center", WEEKDAY_LABEL_CLASSES)}>
+              {Array.from(label)[0]}
+            </div>
+          ))}
+        </div>
 
-      <div className="grid grid-cols-7 gap-1">
-        {days.map((day) => (
-          <CalendarCell
-            key={day.date}
-            day={day}
-            maxCount={maxCount}
-            tooltipText={getTooltipText(day.count, day.date, t, timeBasis)}
-            onClick={onClick}
-          />
-        ))}
+        <div className="grid grid-cols-7 gap-1">
+          {days.map((day) => (
+            <CalendarCell
+              key={day.date}
+              day={day}
+              maxCount={maxCount}
+              tooltipText={getTooltipText(day.count, day.date, t, timeBasis)}
+              onClick={onClick}
+              hideEmptyDays={hideEmptyDays}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 MonthCalendar.displayName = "MonthCalendar";

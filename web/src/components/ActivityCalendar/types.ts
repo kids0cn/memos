@@ -23,4 +23,6 @@ export interface MonthCalendarProps {
   selectedDate?: string;
   onClick?: (date: string) => void;
   timeBasis?: MemoTimeBasis;
+  /** Draw days without entries as blank placeholders: no numeral, not clickable. */
+  hideEmptyDays?: boolean;
 }

@@ -71,6 +71,7 @@
     "no-memos-in-month": "No memos in {{month}}",
     "no-memos-on-day": "No memos on this day",
     "previous-year": "Previous year",
+    "select-date": "Select date",
     "select-month": "Select month"
   },
   "demo": {
@@ -185,6 +186,7 @@
     "explore": "Explore",
     "filter": "Filter",
     "home": "Home",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Timeline",
     "inbox": "Inbox",
     "language": "Language",

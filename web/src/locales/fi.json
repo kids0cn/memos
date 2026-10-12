@@ -123,6 +123,7 @@
     "explore": "Tutkia",
     "filter": "Suodattaa",
     "home": "Kotiin",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Aikajana",
     "inbox": "Saapuneet",
     "language": "Kieli",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Ei muistioita {{month}}",
     "no-memos-on-day": "Ei muistioita tänä päivänä",
     "previous-year": "Edellisessä vuodessa",
+    "select-date": "Select date",
     "select-month": "Valitse kuukausi"
   },
   "space": {

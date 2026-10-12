@@ -123,6 +123,7 @@
     "explore": "Разгледайте",
     "filter": "Филтър",
     "home": "Начало",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Хронология",
     "inbox": "Входяща кутия",
     "language": "език",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Няма бележки в {{month}}",
     "no-memos-on-day": "Няма бележки в този ден",
     "previous-year": "Предишна година",
+    "select-date": "Select date",
     "select-month": "Изберете месец"
   },
   "space": {

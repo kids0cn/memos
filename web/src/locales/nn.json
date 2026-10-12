@@ -119,6 +119,7 @@
     "no-memos-in-month": "Ingen notat i {{month}}",
     "no-memos-on-day": "Ingen notat på denne dagen",
     "previous-year": "Førre år",
+    "select-date": "Select date",
     "select-month": "Vel månad"
   },
   "common": {
@@ -176,6 +177,7 @@
     "name": "Namn",
     "next-month": "Neste månad",
     "nickname": "Kallenamn",
+    "only-days-with-entries": "Only show days with entries",
     "open": "Opne",
     "or": "eller",
     "password": "Passord",

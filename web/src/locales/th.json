@@ -84,6 +84,7 @@
     "explore": "สำรวจ",
     "filter": "ตัวกรอง",
     "home": "หน้าหลัก",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "ไทม์ไลน์",
     "inbox": "กล่องจดหมาย",
     "language": "ภาษา",
@@ -953,6 +954,7 @@
     "no-memos-in-month": "ไม่มีบันทึกช่วยจำใน {{month}}",
     "no-memos-on-day": "ไม่มีบันทึกช่วยจำในวันนี้",
     "previous-year": "ปีที่แล้ว",
+    "select-date": "Select date",
     "select-month": "เลือกเดือน"
   },
   "demo": {

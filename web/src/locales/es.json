@@ -84,6 +84,7 @@
     "explore": "Explorar",
     "filter": "Filtro",
     "home": "Inicio",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Cronología",
     "inbox": "Bandeja de entrada",
     "language": "Idioma",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "No hay memorándums en {{month}}",
     "no-memos-on-day": "No hay memorándums este día",
     "previous-year": "Año anterior",
+    "select-date": "Select date",
     "select-month": "Seleccionar mes"
   },
   "space": {

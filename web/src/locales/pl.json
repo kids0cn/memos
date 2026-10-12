@@ -84,6 +84,7 @@
     "explore": "Odkryj",
     "filter": "Filtr",
     "home": "Strona główna",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Oś czasu",
     "inbox": "Skrzynka odbiorcza",
     "language": "Język",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Brak notatek w {{month}}",
     "no-memos-on-day": "Brak notatek w tym dniu",
     "previous-year": "Poprzedni rok",
+    "select-date": "Select date",
     "select-month": "Wybierz miesiąc"
   },
   "space": {

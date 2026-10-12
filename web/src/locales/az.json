@@ -71,6 +71,7 @@
     "no-memos-in-month": "{{month}} ayında qeyd yoxdur",
     "no-memos-on-day": "Bu gün qeyd yoxdur",
     "previous-year": "Əvvəlki il",
+    "select-date": "Select date",
     "select-month": "Ay seç"
   },
   "demo": {
@@ -185,6 +186,7 @@
     "explore": "Kəşf et",
     "filter": "Süzgəc",
     "home": "Əsas səhifə",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Zaman xətti",
     "inbox": "Gələnlər",
     "language": "Dil",

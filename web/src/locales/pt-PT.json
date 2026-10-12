@@ -84,6 +84,7 @@
     "explore": "Explorar",
     "filter": "Filtrar",
     "home": "Início",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Linha do tempo",
     "inbox": "Notificações",
     "language": "Idioma",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Nenhum memorando em {{month}}",
     "no-memos-on-day": "Nenhum memorando neste dia",
     "previous-year": "Ano anterior",
+    "select-date": "Select date",
     "select-month": "Selecione o mês"
   },
   "space": {

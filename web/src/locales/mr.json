@@ -84,6 +84,7 @@
     "explore": "अन्वेषण",
     "filter": "गाळा",
     "home": "घर",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "कालरेषा",
     "inbox": "इनबॉक्स",
     "language": "भाषा",
@@ -953,6 +954,7 @@
     "no-memos-in-month": "{{month}} मध्ये कोणतेही मेमो नाहीत",
     "no-memos-on-day": "या दिवशी कोणतेही मेमो नाहीत",
     "previous-year": "मागील वर्षी",
+    "select-date": "Select date",
     "select-month": "महिना निवडा"
   },
   "demo": {

@@ -123,6 +123,7 @@
     "explore": "Naršyti",
     "filter": "Filtruoti",
     "home": "Pradžia",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Laiko juosta",
     "inbox": "Gautieji",
     "language": "Kalba",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Nėra priminimų {{month}}",
     "no-memos-on-day": "Šią dieną priminimų nėra",
     "previous-year": "Ankstesniais metais",
+    "select-date": "Select date",
     "select-month": "Pasirinkite mėnesį"
   },
   "space": {

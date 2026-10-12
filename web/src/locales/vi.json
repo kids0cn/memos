@@ -84,6 +84,7 @@
     "explore": "Khám phá",
     "filter": "Lọc",
     "home": "Trang chủ",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Dòng thời gian",
     "inbox": "Hộp thư đến",
     "language": "Ngôn ngữ",
@@ -953,6 +954,7 @@
     "no-memos-in-month": "Không có ghi chú nào trong {{month}}",
     "no-memos-on-day": "Không có ghi chú nào trong ngày này",
     "previous-year": "Năm trước",
+    "select-date": "Select date",
     "select-month": "Chọn tháng"
   },
   "demo": {

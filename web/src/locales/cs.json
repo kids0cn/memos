@@ -84,6 +84,7 @@
     "explore": "Prozkoumat",
     "filter": "Filtr",
     "home": "Domů",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Časová osa",
     "inbox": "Došlá pošta",
     "language": "Jazyk",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Žádné poznámky v {{month}}",
     "no-memos-on-day": "Žádné poznámky v tento den",
     "previous-year": "Předchozí rok",
+    "select-date": "Select date",
     "select-month": "Vyberte měsíc"
   },
   "space": {

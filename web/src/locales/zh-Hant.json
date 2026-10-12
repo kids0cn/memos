@@ -53,6 +53,7 @@
     "no-memos-in-month": "{{month}} 沒有備忘錄",
     "no-memos-on-day": "這一天沒有備忘錄",
     "previous-year": "上一年",
+    "select-date": "選擇日期",
     "select-month": "選擇月份"
   },
   "demo": {
@@ -165,6 +166,7 @@
     "explore": "探索",
     "filter": "篩選",
     "home": "首頁",
+    "only-days-with-entries": "只顯示有日記的日期",
     "timeline": "時間軸",
     "inbox": "通知",
     "language": "語言",

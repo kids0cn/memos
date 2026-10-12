@@ -71,6 +71,7 @@
     "no-memos-in-month": "{{month}} ayında not yok",
     "no-memos-on-day": "Bu günde not yok",
     "previous-year": "Önceki yıl",
+    "select-date": "Select date",
     "select-month": "Ay seç"
   },
   "common": {
@@ -113,6 +114,7 @@
     "explore": "Keşfet",
     "filter": "Filtrele",
     "home": "Ana Sayfa",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Zaman çizelgesi",
     "inbox": "Gelen Kutusu",
     "language": "Dil",

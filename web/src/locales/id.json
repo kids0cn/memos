@@ -84,6 +84,7 @@
     "explore": "Jelajahi",
     "filter": "Saring",
     "home": "Beranda",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Linimasa",
     "inbox": "Kotak Masuk",
     "language": "Bahasa",
@@ -953,6 +954,7 @@
     "no-memos-in-month": "Tidak ada memo dalam {{month}}",
     "no-memos-on-day": "Tidak ada memo pada hari ini",
     "previous-year": "Tahun sebelumnya",
+    "select-date": "Select date",
     "select-month": "Pilih bulan"
   },
   "demo": {

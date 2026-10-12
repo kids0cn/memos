@@ -84,6 +84,7 @@
     "explore": "Utforska",
     "filter": "Filter",
     "home": "Hem",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Tidslinje",
     "inbox": "Inkorg",
     "language": "Språk",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Inga PM i {{month}}",
     "no-memos-on-day": "Inga PM denna dag",
     "previous-year": "Föregående år",
+    "select-date": "Select date",
     "select-month": "Välj månad"
   },
   "space": {

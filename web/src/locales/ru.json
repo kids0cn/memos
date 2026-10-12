@@ -84,6 +84,7 @@
     "explore": "Обзор",
     "filter": "Фильтр",
     "home": "Главная",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Хронология",
     "inbox": "Уведомления",
     "language": "Язык",
@@ -958,6 +959,7 @@
     "no-memos-in-month": "Нет заметок в {{month}}",
     "no-memos-on-day": "Нет заметок в этот день",
     "previous-year": "Предыдущий год",
+    "select-date": "Select date",
     "select-month": "Выбрать месяц"
   },
   "search": {

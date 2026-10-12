@@ -84,6 +84,7 @@
     "explore": "Explora",
     "filter": "Filtra",
     "home": "Inici",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Cronologia",
     "inbox": "Bústia d'entrada",
     "language": "Llenguatge",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "No hi ha notes a {{month}}",
     "no-memos-on-day": "No hi ha notes aquest dia",
     "previous-year": "L'any anterior",
+    "select-date": "Select date",
     "select-month": "Selecciona el mes"
   },
   "space": {

@@ -123,6 +123,7 @@
     "explore": "Explora",
     "filter": "Filtra",
     "home": "Acasă",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Cronologie",
     "inbox": "Inbox",
     "language": "Limbă",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Niciun memento în {{month}}",
     "no-memos-on-day": "Niciun memento în această zi",
     "previous-year": "Anul precedent",
+    "select-date": "Select date",
     "select-month": "Selectați luna"
   },
   "space": {

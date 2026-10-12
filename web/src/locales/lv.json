@@ -123,6 +123,7 @@
     "explore": "Izpētīt",
     "filter": "Filtrs",
     "home": "Sākums",
+    "only-days-with-entries": "Only show days with entries",
     "timeline": "Laika skala",
     "inbox": "Iesūtne",
     "language": "Valoda",
@@ -972,6 +973,7 @@
     "no-memos-in-month": "Nav piezīmju {{month}}",
     "no-memos-on-day": "Šajā dienā nav piezīmju",
     "previous-year": "Iepriekšējais gads",
+    "select-date": "Select date",
     "select-month": "Atlasīt mēnesi"
   },
   "space": {
