@@ -36,7 +36,10 @@ ls -la "$SRC/memos-bin" | awk '{print "    产物:", $5, "bytes"}'
 
 echo "$LOG_PREFIX [4/5] 安装 + 重启服务 ..."
 mkdir -p "$BIN_DIR"
-cp "$SRC/memos-bin" "$BIN_DIR/memos-bin"
+# 原子替换:运行中的二进制不能直接覆写(Text file busy),cp到临时名再mv改名
+cp "$SRC/memos-bin" "$BIN_DIR/memos-bin.new"
+chmod +x "$BIN_DIR/memos-bin.new"
+mv -f "$BIN_DIR/memos-bin.new" "$BIN_DIR/memos-bin"
 sudo systemctl restart memos.service
 sleep 5
 
