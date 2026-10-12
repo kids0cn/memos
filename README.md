@@ -38,6 +38,10 @@ git push origin feature/diary-calendar
 
 # 4) SSH 到服务器部署（一条命令：拉代码→前端→后端→重启→健康检查）
 ssh openclaw@<服务器> '~/projects/memos/deploy/deploy.sh'
+
+# 4') 本地构建部署（**服务器零编译 · 弱服务器推荐**）：
+#     本机 pnpm release + go build → 分片上传 → 服务器只替换+重启+健康检查
+./deploy/deploy-local.sh
 ```
 
 ## 部署管线说明
@@ -50,10 +54,18 @@ ssh openclaw@<服务器> '~/projects/memos/deploy/deploy.sh'
 - 服务器环境已就绪：node26（corepack pnpm）、go1.x（~/.local/go）、GOPROXY= goproxy.cn
 - 服务：`memos.service`（127.0.0.1:5230，公网 `memos.hack4fun.asia` 走 cloudflared 隧道）
 
+`deploy/deploy-local.sh` 在**开发机**执行（弱服务器推荐，与 deploy.sh 二选一）：
+1. 本机 `pnpm release` + `go build`（前端 go:embed 烤入二进制）
+2. 分片上传（4MB/片 + 3 次重试，绕开大文件传输断连）+ 远端 md5 校验
+3. 服务器 `deploy/install-artifact.sh`：原子替换 → 重启 → 健康检查（**不拉代码、不编译**）
+- 前提：本机 node/pnpm + Go（≥ go.mod 版本）；`ssh-copy-id` 免密已配；不拉代码也能部署（二进制自带前端与源码状态无关）
+
 ## 改进状态日志
 
 | 日期 | 改动 | 状态 |
 |------|------|------|
+| 2026-10-12 | 侧栏日历：标题「年月」点选日期（DayPicker）+「只显示有日记的日期」开关（跳空月/空白天占位，localStorage 持久） | ✅ |
+| 2026-10-12 | 本地构建管线 deploy-local.sh + install-artifact.sh（服务器零编译，分片上传断连重试） | ✅ |
 | 2026-10-12 | fork 立项（kids0cn/memos）+ README 台账 + deploy/deploy.sh 管线 | ✅ |
 | 2026-10-12 | 运维加固：运行时迁 /var/lib/shellcrash（代理层，详见服务器 skill shellcrash-proxy） | ✅ |
 | 2026-10-11 | 部署基线：源码构建修复（pnpm release 烤入前端）+ systemd 三件套（memos/cloudflared/代理） | ✅ |
