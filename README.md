@@ -1,75 +1,64 @@
-> ✨ Featured sponsor: [CodeRabbit — Industry-leading AI code reviews](https://coderabbit.link/usememos).
+# memos-fork · 个人 Memos 改造项目
 
-# Memos
+> 本 fork 基于 [usememos/memos](https://github.com/usememos/memos)（**MIT 协议**，版权声明保留在 `README.upstream.md` 及各源文件头部）。
+> 目标：把 Memos 改造成"13 年日记 + 个人知识库"最顺手的形态。
+> **本 README 兼项目台账**：任务目标、改进状态、部署说明都在这，每次改动追加日志。
 
-<img src="./web/public/logo.webp" alt="" width="96" align="right">
+---
 
-**Your thoughts, your data, shared on your terms.**
+## 任务目标（Roadmap）
 
-Memos is a timeline for your notes, and it belongs to you. Write in Markdown, post in seconds, and choose who sees each memo: just you, the people you invite, or anyone with the link.
+- [x] **P0 部署基线**：源码自建 + 前端烤入（pnpm release）+ systemd 三件套（2026-10-11）
+- [ ] **P1 日历打点**：CalendarView 只高亮有 `#日记` 的日期（点日期直达当天）——翻13年日记不用滚动
+- [ ] P2 随机翻一天旧日记 / 按年份跳转
+- [ ] P3 更多想法（随缘追加）
 
-**[Run with Docker](#quick-start)** · **[Try the live demo](https://demo.usememos.com/)** · [Read the docs](https://usememos.com/docs)
+**P1 技术线索**（给开发机的你/AI 助手）：
+- 组件：`web/src/components/CalendarView/CalendarGrid.tsx`（React19 + TS + Vite + Tailwind v4）
+- 数据：app 内已有 memo 查询 hooks；"哪些天有日记"可一次拉 `#日记` 列表聚合日期集合（约630个日期）
+- 判定：`createTime`（迁移时已对齐真实日记日期，2013-01→2026-10）
 
-[![GitHub stars](https://img.shields.io/github/stars/usememos/memos?style=flat-square&logo=github&label=Stars)](https://github.com/usememos/memos)
-[![Latest release](https://img.shields.io/github/v/release/usememos/memos?style=flat-square&label=Release)](https://github.com/usememos/memos/releases)
-[![Docker pulls](https://img.shields.io/docker/pulls/neosmemo/memos?style=flat-square&logo=docker)](https://hub.docker.com/r/neosmemo/memos)
-[![MIT license](https://img.shields.io/github/license/usememos/memos?style=flat-square)](LICENSE)
+## 分支约定
 
-<img src="https://raw.githubusercontent.com/usememos/.github/refs/heads/main/assets/demo.png" alt="The Memos timeline with a memo composer and recent memos" height="512" />
+- `feature/diary-calendar` ← **当前开发分支**（开发机 clone 后在此干活）
+- 基线：上游 main @ `d775160`（2026-10-11）；上游同步=rebase，可选不追
 
-## Why Memos?
+## 工作流（开发 → 部署）
 
-- **Write first** — Save a thought without choosing a title or folder. Memos are written in Markdown and can include images and files.
-- **Find it later** — Search, filter by tag, or look back through any day on the timeline. Pin what matters and save the filters you reuse as views.
-- **Yours to keep** — Self-host Memos with [zero telemetry](https://usememos.com/features/data-ownership), [MIT-licensed source](LICENSE), and a full export of your memos.
-- **Share when you choose** — New memos are private. Make one visible to signed-in users or public when you want to share it.
+```
+# 1) 开发机 clone
+git clone https://github.com/kids0cn/memos.git
+cd memos && git checkout feature/diary-calendar
 
-[Explore all features →](https://usememos.com/features)
+# 2) 本地开发（AI 辅助随意：Claude Code / Cursor 都行）
+#    前端预览：cd web && pnpm install && pnpm dev   (API 代理到测试实例自定)
 
-## Quick Start
+# 3) push 到你的 fork
+git push origin feature/diary-calendar
 
-Run Memos with Docker:
-
-```bash
-docker run -d \
-  --name memos \
-  -p 5230:5230 \
-  -v ~/.memos:/var/opt/memos \
-  neosmemo/memos:stable
+# 4) SSH 到服务器部署（一条命令：拉代码→前端→后端→重启→健康检查）
+ssh openclaw@<服务器> '~/projects/memos/deploy/deploy.sh'
 ```
 
-Other install options are in the [deployment guide](https://usememos.com/docs/deploy).
+## 部署管线说明
 
-Releases use `YY.MM`, with optional point releases such as `26.09.1` and release
-candidates such as `26.09-rc.1`. Calendar release tags have no `v` prefix. The Docker `stable` tag follows stable releases;
-`canary` follows development builds. If upgrading from a release before v0.31.0,
-run [v0.31.0](https://github.com/usememos/memos/releases/tag/v0.31.0) successfully.
-See the [upgrade requirements](store/migration/README.md) for earlier versions.
+`deploy/deploy.sh` 在服务器（本机）执行：
+1. `git pull` 当前分支（默认 `feature/diary-calendar`，可传参）
+2. `web/`：pnpm install + **pnpm release**（SPA 产物 → `server/frontend/dist`，被 go:embed 烤入）
+3. `go build` → 安装到 `~/.local/lib/memos/memos-bin`
+4. `systemctl restart memos.service` + 健康检查（API + 前端 assets + 公网域名）
+- 服务器环境已就绪：node26（corepack pnpm）、go1.x（~/.local/go）、GOPROXY= goproxy.cn
+- 服务：`memos.service`（127.0.0.1:5230，公网 `memos.hack4fun.asia` 走 cloudflared 隧道）
 
-## Web Clipper
+## 改进状态日志
 
-Save pages, selections, and images from your browser straight into Memos as source-linked Markdown. Get the [Memos Web Clipper](https://usememos.com/web-clipper) for [Chrome](https://chromewebstore.google.com/detail/memos-web-clipper/nebaoebnljalfegiidibihhkebeiklbl) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/memos-web-clipper/).
+| 日期 | 改动 | 状态 |
+|------|------|------|
+| 2026-10-12 | fork 立项（kids0cn/memos）+ README 台账 + deploy/deploy.sh 管线 | ✅ |
+| 2026-10-12 | 运维加固：运行时迁 /var/lib/shellcrash（代理层，详见服务器 skill shellcrash-proxy） | ✅ |
+| 2026-10-11 | 部署基线：源码构建修复（pnpm release 烤入前端）+ systemd 三件套（memos/cloudflared/代理） | ✅ |
 
-## Sponsors
+## 数据与隐私
 
-<p>
-  <a href="https://coderabbit.link/usememos" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/usememos/.github/refs/heads/main/assets/sponsors/coderabbit/white-typemark.svg" /><img src="https://raw.githubusercontent.com/usememos/.github/refs/heads/main/assets/sponsors/coderabbit/orange-typemark.svg" alt="CodeRabbit — Cut code review time and bugs in half" height="40" align="middle" /></picture></a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.testmuai.com/?utm_medium=sponsor&utm_source=memos" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/usememos/.github/refs/heads/main/assets/sponsors/testmuai/white.png" /><img src="https://raw.githubusercontent.com/usememos/.github/refs/heads/main/assets/sponsors/testmuai/black.png" alt="TestMu AI — The world’s first full-stack Agentic AI Quality Engineering platform" height="30" align="middle" /></picture></a>
-</p>
-
-Love Memos? [Sponsor the project on GitHub](https://github.com/sponsors/usememos).
-
-## Get Help
-
-Read the [docs](https://usememos.com/docs), join [Discord](https://discord.gg/tfPJa4UmAv), or ask in [GitHub Discussions](https://github.com/usememos/memos/discussions). Found a bug or have an idea? [Open an issue](https://github.com/usememos/memos/issues/new/choose). To contribute, see the [contributing guide](https://usememos.com/docs/development/contributing).
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=usememos%2Fmemos&amp;type=date&amp;legend=top-left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=usememos/memos&amp;type=date&amp;theme=dark&amp;legend=top-left" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=usememos/memos&amp;type=date&amp;legend=top-left" />
-    <img alt="Memos star history chart" src="https://api.star-history.com/chart?repos=usememos/memos&amp;type=date&amp;legend=top-left" />
-  </picture>
-</a>
+- 数据目录：`~/.hermes/memos-data/`（sqlite + PAT），**不在本仓库**
+- 本仓库只含代码；日记正文永不入库
