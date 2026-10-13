@@ -968,10 +968,13 @@
     "open-memo": "Atvērt piezīmi"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Jauna piezīme šajā dienā",
+    "next-day": "Next day",
     "next-year": "Nākamgad",
     "no-memos-in-month": "Nav piezīmju {{month}}",
     "no-memos-on-day": "Šajā dienā nav piezīmju",
+    "previous-day": "Previous day",
     "previous-year": "Iepriekšējais gads",
     "select-date": "Select date",
     "select-month": "Atlasīt mēnesi"

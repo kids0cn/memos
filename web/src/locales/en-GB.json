@@ -921,10 +921,13 @@
     "open-memo": "Open memo"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "New memo on this day",
+    "next-day": "Next day",
     "next-year": "Next year",
     "no-memos-in-month": "No memos in {{month}}",
     "no-memos-on-day": "No memos on this day",
+    "previous-day": "Previous day",
     "previous-year": "Previous year",
     "select-date": "Select date",
     "select-month": "Select month"

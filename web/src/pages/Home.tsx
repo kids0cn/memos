@@ -62,6 +62,7 @@ const Home = () => {
           orderBy={orderBy}
           filter={memoFilter}
           contextFilter={contextFilter}
+          dateNavigation
           renderLeading={({ useGrid }) => {
             if (!isUserSettingsInitialized || !canComposeInScope) return null;
 

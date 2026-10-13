@@ -968,10 +968,13 @@
     "open-memo": "Otwórz notatkę"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nowa notatka z tego dnia",
+    "next-day": "Next day",
     "next-year": "Następny rok",
     "no-memos-in-month": "Brak notatek w {{month}}",
     "no-memos-on-day": "Brak notatek w tym dniu",
+    "previous-day": "Previous day",
     "previous-year": "Poprzedni rok",
     "select-date": "Select date",
     "select-month": "Wybierz miesiąc"

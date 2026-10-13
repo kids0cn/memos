@@ -949,10 +949,13 @@
     "open-memo": "Buka memo"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Memo baru pada hari ini",
+    "next-day": "Next day",
     "next-year": "Tahun depan",
     "no-memos-in-month": "Tidak ada memo dalam {{month}}",
     "no-memos-on-day": "Tidak ada memo pada hari ini",
+    "previous-day": "Previous day",
     "previous-year": "Tahun sebelumnya",
     "select-date": "Select date",
     "select-month": "Pilih bulan"

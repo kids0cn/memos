@@ -949,10 +949,13 @@
     "open-memo": "เปิดบันทึกช่วยจำ"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "บันทึกช่วยจำใหม่ในวันนี้",
+    "next-day": "Next day",
     "next-year": "ปีหน้า",
     "no-memos-in-month": "ไม่มีบันทึกช่วยจำใน {{month}}",
     "no-memos-on-day": "ไม่มีบันทึกช่วยจำในวันนี้",
+    "previous-day": "Previous day",
     "previous-year": "ปีที่แล้ว",
     "select-date": "Select date",
     "select-month": "เลือกเดือน"

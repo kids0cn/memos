@@ -48,10 +48,13 @@
     "welcome-back": "歡迎回來。"
   },
   "calendar": {
+    "back-to-today": "回到今天",
     "new-memo-on-day": "在這一天新增備忘錄",
+    "next-day": "下一天",
     "next-year": "下一年",
     "no-memos-in-month": "{{month}} 沒有備忘錄",
     "no-memos-on-day": "這一天沒有備忘錄",
+    "previous-day": "上一天",
     "previous-year": "上一年",
     "select-date": "選擇日期",
     "select-month": "選擇月份"

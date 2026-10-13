@@ -968,10 +968,13 @@
     "open-memo": "Odpri opombo"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nova beležka na ta dan",
+    "next-day": "Next day",
     "next-year": "Naslednje leto",
     "no-memos-in-month": "Ni beležk v {{month}}",
     "no-memos-on-day": "Ta dan ni beležk",
+    "previous-day": "Previous day",
     "previous-year": "Prejšnje leto",
     "select-date": "Select date",
     "select-month": "Izberite mesec"

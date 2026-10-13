@@ -949,10 +949,13 @@
     "open-memo": "मेमो उघडा"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "आजच्या दिवशी नवीन मेमो",
+    "next-day": "Next day",
     "next-year": "पुढील वर्षी",
     "no-memos-in-month": "{{month}} मध्ये कोणतेही मेमो नाहीत",
     "no-memos-on-day": "या दिवशी कोणतेही मेमो नाहीत",
+    "previous-day": "Previous day",
     "previous-year": "मागील वर्षी",
     "select-date": "Select date",
     "select-month": "महिना निवडा"

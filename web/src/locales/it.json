@@ -968,10 +968,13 @@
     "open-memo": "Apri memo"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nuovo memo in questo giorno",
+    "next-day": "Next day",
     "next-year": "Anno prossimo",
     "no-memos-in-month": "Nessun memo in {{month}}",
     "no-memos-on-day": "Nessun memo in questo giorno",
+    "previous-day": "Previous day",
     "previous-year": "Anno precedente",
     "select-date": "Select date",
     "select-month": "Seleziona il mese"

@@ -968,10 +968,13 @@
     "open-memo": "Otevřít memorandum"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nová poznámka z tohoto dne",
+    "next-day": "Next day",
     "next-year": "Příští rok",
     "no-memos-in-month": "Žádné poznámky v {{month}}",
     "no-memos-on-day": "Žádné poznámky v tento den",
+    "previous-day": "Previous day",
     "previous-year": "Předchozí rok",
     "select-date": "Select date",
     "select-month": "Vyberte měsíc"

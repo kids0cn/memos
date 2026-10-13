@@ -114,10 +114,13 @@
     "welcome-back": "Velkomen attende."
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nytt notat på denne dagen",
+    "next-day": "Next day",
     "next-year": "Neste år",
     "no-memos-in-month": "Ingen notat i {{month}}",
     "no-memos-on-day": "Ingen notat på denne dagen",
+    "previous-day": "Previous day",
     "previous-year": "Førre år",
     "select-date": "Select date",
     "select-month": "Vel månad"

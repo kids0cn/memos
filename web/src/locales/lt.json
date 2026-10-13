@@ -968,10 +968,13 @@
     "open-memo": "Atidaryti atmintinę"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Naujas priminimas šią dieną",
+    "next-day": "Next day",
     "next-year": "Kitais metais",
     "no-memos-in-month": "Nėra priminimų {{month}}",
     "no-memos-on-day": "Šią dieną priminimų nėra",
+    "previous-day": "Previous day",
     "previous-year": "Ankstesniais metais",
     "select-date": "Select date",
     "select-month": "Pasirinkite mėnesį"

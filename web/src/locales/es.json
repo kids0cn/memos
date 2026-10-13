@@ -968,10 +968,13 @@
     "open-memo": "Nota abierta"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nuevo memorándum en este día",
+    "next-day": "Next day",
     "next-year": "El próximo año",
     "no-memos-in-month": "No hay memorándums en {{month}}",
     "no-memos-on-day": "No hay memorándums este día",
+    "previous-day": "Previous day",
     "previous-year": "Año anterior",
     "select-date": "Select date",
     "select-month": "Seleccionar mes"

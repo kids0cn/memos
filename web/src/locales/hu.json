@@ -968,10 +968,13 @@
     "open-memo": "Jegyzet megnyitása"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Új emlékeztető ezen a napon.",
+    "next-day": "Next day",
     "next-year": "Jövőre.",
     "no-memos-in-month": "Nincsenek emlékeztetők {{month}}-ben.",
     "no-memos-on-day": "Ezen a napon nincsenek emlékeztetők",
+    "previous-day": "Previous day",
     "previous-year": "Előző év.",
     "select-date": "Select date",
     "select-month": "Hónap kiválasztása."

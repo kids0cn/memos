@@ -968,10 +968,13 @@
     "open-memo": "Ava memo"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Uus memo sel päeval",
+    "next-day": "Next day",
     "next-year": "Järgmisel aastal",
     "no-memos-in-month": "Memosid pole {{month}}",
     "no-memos-on-day": "Sel päeval memosid pole",
+    "previous-day": "Previous day",
     "previous-year": "Eelmisel aastal",
     "select-date": "Select date",
     "select-month": "Valige kuu"

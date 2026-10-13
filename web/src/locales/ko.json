@@ -949,10 +949,13 @@
     "open-memo": "메모 열기"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "오늘 새 메모가 있습니다.",
+    "next-day": "Next day",
     "next-year": "내년",
     "no-memos-in-month": "{{month}}년 동안 메모가 없습니다.",
     "no-memos-on-day": "이 날에는 메모가 없습니다.",
+    "previous-day": "Previous day",
     "previous-year": "작년",
     "select-date": "Select date",
     "select-month": "월을 선택하세요."

@@ -968,10 +968,13 @@
     "open-memo": "Otvoriť poznámku"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nová poznámka v tento deň",
+    "next-day": "Next day",
     "next-year": "Budúci rok",
     "no-memos-in-month": "Žiadne poznámky v {{month}}",
     "no-memos-on-day": "Žiadne poznámky v tento deň",
+    "previous-day": "Previous day",
     "previous-year": "Predchádzajúci rok",
     "select-date": "Select date",
     "select-month": "Vyberte mesiac"

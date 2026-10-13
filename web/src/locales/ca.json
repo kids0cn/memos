@@ -968,10 +968,13 @@
     "open-memo": "Obre el memoràndum"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nova nota en aquest dia",
+    "next-day": "Next day",
     "next-year": "L'any que ve",
     "no-memos-in-month": "No hi ha notes a {{month}}",
     "no-memos-on-day": "No hi ha notes aquest dia",
+    "previous-day": "Previous day",
     "previous-year": "L'any anterior",
     "select-date": "Select date",
     "select-month": "Selecciona el mes"

@@ -968,10 +968,13 @@
     "open-memo": "Άνοιγμα σημειώματος"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Νέο σημείωμα αυτήν την ημέρα",
+    "next-day": "Next day",
     "next-year": "Επόμενο έτος",
     "no-memos-in-month": "Δεν υπάρχουν σημειώματα στο {{month}}",
     "no-memos-on-day": "Δεν υπάρχουν σημειώματα αυτήν την ημέρα",
+    "previous-day": "Previous day",
     "previous-year": "Προηγούμενο έτος",
     "select-date": "Select date",
     "select-month": "Επιλογή μήνα"
