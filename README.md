@@ -60,10 +60,18 @@ ssh openclaw@<服务器> '~/projects/memos/deploy/deploy.sh'
 3. 服务器 `deploy/install-artifact.sh`：原子替换 → 重启 → 健康检查（**不拉代码、不编译**）
 - 前提：本机 node/pnpm + Go（≥ go.mod 版本）；`ssh-copy-id` 免密已配；不拉代码也能部署（二进制自带前端与源码状态无关）
 
+**通道三 · 产物走 GitHub Release 资产**（手动，无脚本；**SSH 不通时用**，例：本机代理 TUN 掐断 22 端口裸 TCP）：
+1. 开发机 `pnpm release` + `go build -trimpath -ldflags "-s -w" -o memos-bin ./cmd/memos`
+2. 用 GitHub API 发布 Release 资产 `memos-bin`，tag 形如 `deploy-YYYYMMDD-<shortsha>`
+3. 部署机（无需 token、不拉代码）：`curl -L -o /tmp/memos-bin <资产 URL> && ~/projects/memos/deploy/install-artifact.sh /tmp/memos-bin`
+- 仓库公开 → 资产公开可下（二进制只含代码 + 前端 dist，**不含日记数据/密钥**）
+- 最近资产：`deploy-20261013-7c0d131a5`（67,211,527 bytes，md5 `1e502b6ec31050f75b7832142ce3e999`）
+
 ## 改进状态日志
 
 | 日期 | 改动 | 状态 |
 |------|------|------|
+| 2026-10-13 | 部署通道三：产物打成 GitHub Release 资产（本机 SSH 被代理 TUN 掐断时的替代路径；资产 `deploy-20261013-7c0d131a5`，md5 `1e502b6e…`，下载侧已验字节一致） | ✅ |
 | 2026-10-13 | 底部日期导航条：列表末尾「回到今天 / ← 上一天 / 回到顶部 / 下一天 →」，按相邻**有内容的日期**跳转且日历窗口同步（46 locale 同步） | ✅ |
 | 2026-10-13 | 修手机端日历月份丢失：抽屉关闭会卸载侧栏 → 月份改由 URL 日期筛选派生，浏览 override 提升到 AppSidebarContext | ✅ |
 | 2026-10-12 | 日期选择器弹层三级缩放导航（日→月→年，点年份直跳 2013，`0e1f7f43e` 补记） | ✅ |
