@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import { MonthCalendar } from "@/components/ActivityCalendar";
 import { Switch } from "@/components/ui/switch";
+import { useAppSidebar } from "@/contexts/AppSidebarContext";
 import { useMemoFilterContext } from "@/contexts/MemoFilterContext";
 import { useDateFilterNavigation } from "@/hooks";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -24,15 +25,28 @@ const StatisticsView = (props: Props) => {
   const { statisticsData } = props;
   const { activityStats, timeBasis } = statisticsData;
   const { filters } = useMemoFilterContext();
+  const { calendarMonth, setCalendarMonth } = useAppSidebar();
   const navigateToDateFilter = useDateFilterNavigation();
   const t = useTranslate();
-  const [visibleMonthString, setVisibleMonthString] = useState(getCurrentMonth);
   const [onlyDaysWithEntries, setOnlyDaysWithEntries] = useLocalStorage(ONLY_DAYS_WITH_ENTRIES_STORAGE_KEY, false);
   const selectedDate = filters.find((filter) => filter.factor === "displayTime")?.value;
 
-  // The same path for the grid and the title's date picker: filter, then close the picker.
+  // The window belongs to the active date filter and browsing months is a temporary override on top
+  // of it. An override recorded against a different filter value is ignored outright, so the window
+  // can never lag the filter and no render shows a month the user has already left.
+  const filterMonth = selectedDate ? selectedDate.slice(0, 7) : getCurrentMonth();
+  const browsedMonth = calendarMonth && calendarMonth.filterValue === selectedDate ? calendarMonth.month : undefined;
+  const visibleMonth = browsedMonth ?? filterMonth;
+
+  const handleMonthChange = useCallback(
+    (month: string) => setCalendarMonth({ month, filterValue: selectedDate }),
+    [setCalendarMonth, selectedDate],
+  );
+
+  // The same path for the grid and the title's date picker: filter, then close the picker. Dropping
+  // the override re-centres the window on the picked day's month, through the filter itself.
   const handleDateSelect = (date: string) => {
-    setVisibleMonthString(date.slice(0, 7));
+    setCalendarMonth(undefined);
     navigateToDateFilter(date);
     props.onDateSelect?.();
   };
@@ -42,9 +56,9 @@ const StatisticsView = (props: Props) => {
     if (next) {
       // Land on a month that holds entries; stays put when the current one is already
       // empty and no earlier month exists, or when there is no data at all.
-      const nearest = findNearestActiveMonth(visibleMonthString, activityStats);
-      if (nearest && nearest !== visibleMonthString) {
-        setVisibleMonthString(nearest);
+      const nearest = findNearestActiveMonth(visibleMonth, activityStats);
+      if (nearest && nearest !== visibleMonth) {
+        setCalendarMonth({ month: nearest, filterValue: selectedDate });
       }
     }
   };
@@ -52,8 +66,8 @@ const StatisticsView = (props: Props) => {
   return (
     <div className="group flex w-full flex-col text-muted-foreground animate-fade-in">
       <MonthNavigator
-        visibleMonth={visibleMonthString}
-        onMonthChange={setVisibleMonthString}
+        visibleMonth={visibleMonth}
+        onMonthChange={handleMonthChange}
         activityStats={activityStats}
         skipEmptyMonths={onlyDaysWithEntries}
         selectedDate={selectedDate}
@@ -62,7 +76,7 @@ const StatisticsView = (props: Props) => {
 
       <div className="w-full animate-scale-in">
         <MonthCalendar
-          month={visibleMonthString}
+          month={visibleMonth}
           data={activityStats}
           selectedDate={selectedDate}
           onClick={handleDateSelect}

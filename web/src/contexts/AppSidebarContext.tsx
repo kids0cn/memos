@@ -1,10 +1,22 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import type { MemoParentStatus } from "@/components/MemoParentPlaceholder";
+import { parseFilterQuery } from "@/contexts/MemoFilterContext";
 import type { Memo } from "@/types/proto/api/memo_service_pb";
 
 export type AttachmentSection = "all" | "media" | "audio" | "documents" | "unused";
 export type InboxFilter = "all" | "unread" | "archived";
+
+/**
+ * A month the user paged the sidebar calendar to, kept above the mobile Sheet's unmount boundary
+ * so browsing without picking a day survives the drawer closing and reopening.
+ */
+export interface CalendarMonthOverride {
+  /** `YYYY-MM` the calendar was left on. */
+  month: string;
+  /** The active `displayTime` filter value then; the override lapses once that value changes. */
+  filterValue?: string;
+}
 
 export interface MemoDetailSidebarDescriptor {
   memo: Memo;
@@ -33,6 +45,8 @@ interface AppSidebarContextValue {
   completeMobileClose: (open: boolean) => void;
   quickFindOpen: boolean;
   setQuickFindOpen: (open: boolean) => void;
+  calendarMonth?: CalendarMonthOverride;
+  setCalendarMonth: (next?: CalendarMonthOverride) => void;
 }
 
 const AppSidebarContext = createContext<AppSidebarContextValue | null>(null);
@@ -46,6 +60,20 @@ export const AppSidebarProvider = ({ children }: { children: ReactNode }) => {
   const pendingMobileCloseActionRef = useRef<(() => void) | undefined>(undefined);
   const scheduledMobileCloseActionFrameRef = useRef<number | undefined>(undefined);
   const [quickFindOpen, setQuickFindOpen] = useState(false);
+  const [calendarMonth, setCalendarMonth] = useState<CalendarMonthOverride>();
+
+  // A browsed month only outlives the date filter it was browsed against. Dropping it here — during
+  // the render of the component that owns it — beats an effect, which would paint the lapsed month
+  // once before correcting itself. Read from the URL rather than MemoFilterContext because this
+  // provider is also mounted standalone (tests, previews) where that context is absent.
+  if (calendarMonth) {
+    const activeDateFilterValue = parseFilterQuery(new URLSearchParams(location.search).get("filter")).find(
+      (filter) => filter.factor === "displayTime",
+    )?.value;
+    if (calendarMonth.filterValue !== activeDateFilterValue) {
+      setCalendarMonth(undefined);
+    }
+  }
 
   useEffect(() => {
     pendingMobileCloseActionRef.current = undefined;
@@ -111,8 +139,20 @@ export const AppSidebarProvider = ({ children }: { children: ReactNode }) => {
       completeMobileClose,
       quickFindOpen,
       setQuickFindOpen,
+      calendarMonth,
+      setCalendarMonth,
     }),
-    [attachmentSection, inboxFilter, memoDetail, setMemoDetail, mobileOpen, closeMobileThen, completeMobileClose, quickFindOpen],
+    [
+      attachmentSection,
+      inboxFilter,
+      memoDetail,
+      setMemoDetail,
+      mobileOpen,
+      closeMobileThen,
+      completeMobileClose,
+      quickFindOpen,
+      calendarMonth,
+    ],
   );
 
   return <AppSidebarContext.Provider value={value}>{children}</AppSidebarContext.Provider>;
