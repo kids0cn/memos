@@ -1039,10 +1039,13 @@
     "open-memo": "Otvori memorandum"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nova bilješka na današnji dan",
+    "next-day": "Next day",
     "next-year": "Sljedeća godina",
     "no-memos-in-month": "Nema bilješki u {{month}}",
     "no-memos-on-day": "Nema bilješki na ovaj dan",
+    "previous-day": "Previous day",
     "previous-year": "Prethodna godina",
     "select-month": "Odaberite mjesec"
   },

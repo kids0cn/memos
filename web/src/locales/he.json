@@ -1039,10 +1039,13 @@
     "open-memo": "פתח תזכיר"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "תזכיר חדש ביום זה",
+    "next-day": "Next day",
     "next-year": "בשנה הבאה",
     "no-memos-in-month": "אין תזכירים ב-{{month}}",
     "no-memos-on-day": "אין תזכירים ביום זה",
+    "previous-day": "Previous day",
     "previous-year": "שנה קודמת",
     "select-month": "בחר חודש"
   },

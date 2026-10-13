@@ -1025,10 +1025,13 @@
     "open-memo": "Открыть заметку"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Новая заметка в этот день",
+    "next-day": "Next day",
     "next-year": "В следующем году",
     "no-memos-in-month": "Нет заметок в {{month}}",
     "no-memos-on-day": "Нет заметок в этот день",
+    "previous-day": "Previous day",
     "previous-year": "Предыдущий год",
     "select-month": "Выбрать месяц"
   },

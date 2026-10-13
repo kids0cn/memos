@@ -1039,10 +1039,13 @@
     "open-memo": "Avaa muistio"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Uusi muistio tänä päivänä",
+    "next-day": "Next day",
     "next-year": "Ensi vuonna",
     "no-memos-in-month": "Ei muistioita {{month}}",
     "no-memos-on-day": "Ei muistioita tänä päivänä",
+    "previous-day": "Previous day",
     "previous-year": "Edellisessä vuodessa",
     "select-month": "Valitse kuukausi"
   },

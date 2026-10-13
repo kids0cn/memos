@@ -1039,10 +1039,13 @@
     "open-memo": "გახსნის შეტყობინებას"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "ახალი შენიშვნა ამ დღეს",
+    "next-day": "Next day",
     "next-year": "შემდეგი წელი",
     "no-memos-in-month": "შეტყობინებები არ არის {{month}}-ში",
     "no-memos-on-day": "ამ დღეს შეტყობინებები არ არის",
+    "previous-day": "Previous day",
     "previous-year": "წინა წელი",
     "select-month": "თვის არჩევა"
   },

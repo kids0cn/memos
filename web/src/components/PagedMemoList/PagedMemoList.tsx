@@ -1,4 +1,4 @@
-import { ArrowUpIcon, LoaderCircleIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, LoaderCircleIcon } from "lucide-react";
 import { type ReactElement, type ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { MentionResolutionProvider } from "@/components/MemoContent/MentionResolutionContext";
 import { Button } from "@/components/ui/button";
@@ -6,10 +6,14 @@ import { useAppSidebar } from "@/contexts/AppSidebarContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { isSearchFilter, useMemoFilterContext } from "@/contexts/MemoFilterContext";
 import { useNewMemo } from "@/contexts/NewMemoContext";
+import { useSpaceContext } from "@/contexts/SpaceContext";
 import { useView } from "@/contexts/ViewContext";
+import { useDateFilterNavigation } from "@/hooks/useDateFilterNavigation";
 import { useDelayedFlag } from "@/hooks/useDelayedFlag";
+import { useFilteredMemoStats } from "@/hooks/useFilteredMemoStats";
 import { useInfiniteMemos } from "@/hooks/useMemoQueries";
 import { hoistMemoToFront } from "@/hooks/useMemoSorting";
+import { findAdjacentEntryDate, getToday, parseLocalDate } from "@/lib/calendar-utils";
 import { combineCELFilters } from "@/lib/cel-filter";
 import { DEFAULT_LIST_MEMOS_PAGE_SIZE, LOADING_INDICATOR_DELAY_MS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -53,6 +57,8 @@ interface Props {
   renderHeader?: (options: { useGrid: boolean }) => ReactNode;
   /** Replaces the generic empty-state message when the route knows why the list is empty. */
   emptyMessage?: string;
+  /** Enables the end-of-list day controls (today / previous day / next day). Diary routes only. */
+  dateNavigation?: boolean;
 }
 
 function useAutoFetchWhenNotScrollable({
@@ -266,12 +272,14 @@ const PagedMemoList = (props: Props) => {
       </div>
     ) : undefined;
 
-  // Pagination controls are identical across both layouts.
+  // Pagination controls are identical across both layouts. A day-filtered list can be empty
+  // and still needs the day controls, so they stay put even with nothing to show above them.
+  const showListEnd = hasNextPage || displayMemoList.length > 0 || Boolean(props.dateNavigation);
   const footer = (
     <>
       {pageError}
       {isFetchingNextPage && <Loader />}
-      {!isFetchingNextPage && (hasNextPage || displayMemoList.length > 0) && <BackToTop />}
+      {!isFetchingNextPage && showListEnd && (props.dateNavigation ? <DateNavigationRow /> : <BackToTop />)}
     </>
   );
 
@@ -316,8 +324,13 @@ const PagedMemoList = (props: Props) => {
   return children;
 };
 
-const BackToTop = () => {
-  const t = useTranslate();
+/** The single row that closes the list, in both layouts. Buttons wrap rather than overflow. */
+const ListEndRow = ({ children }: { children: ReactNode }) => (
+  <div className="my-4 flex w-full flex-row flex-wrap items-center justify-center gap-1 opacity-70">{children}</div>
+);
+
+/** "Back to top" is a scroll-triggered affordance, so its visibility is read where the row is built. */
+const useBackToTopVisible = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -330,6 +343,12 @@ const BackToTop = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  return isVisible;
+};
+
+const BackToTopButton = () => {
+  const t = useTranslate();
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -337,18 +356,84 @@ const BackToTop = () => {
     });
   };
 
-  // Render nothing at all while hidden, so the list's end carries no phantom spacing.
+  return (
+    <Button variant="ghost" onClick={scrollToTop}>
+      {t("router.back-to-top")}
+      <ArrowUpIcon className="ml-1 w-4 h-auto" />
+    </Button>
+  );
+};
+
+/** Pages without day controls: nothing renders while hidden, so the list's end carries no phantom spacing. */
+const BackToTop = () => {
+  const isVisible = useBackToTopVisible();
+
   if (!isVisible) {
     return null;
   }
 
   return (
-    <div className="my-4 flex w-full flex-row items-center justify-center opacity-70">
-      <Button variant="ghost" onClick={scrollToTop}>
-        {t("router.back-to-top")}
-        <ArrowUpIcon className="ml-1 w-4 h-auto" />
+    <ListEndRow>
+      <BackToTopButton />
+    </ListEndRow>
+  );
+};
+
+/**
+ * The diary page's end-of-list row. The day buttons are permanent, so an empty day still offers
+ * a way out; only "back to top" comes and goes with the scroll position, and the row's height is
+ * set by the buttons that remain, so the list's end never jumps.
+ */
+const DateNavigationRow = () => {
+  const isBackToTopVisible = useBackToTopVisible();
+
+  return (
+    <ListEndRow>
+      <DateNavigation showBackToTop={isBackToTopVisible} />
+    </ListEndRow>
+  );
+};
+
+/**
+ * One day per click, at the end of the list: today, then the nearest neighbouring day that
+ * actually holds an entry. The anchor is the `displayTime` day being filtered, falling back to
+ * today when no day filter is active, so the jumps continue from wherever the reader is.
+ * Entry days come from the same Home-scoped statistics the sidebar calendar draws, so the two
+ * share one request and agree on which days exist.
+ */
+const DateNavigation = ({ showBackToTop }: { showBackToTop: boolean }) => {
+  const t = useTranslate();
+  const { filters } = useMemoFilterContext();
+  const { memoFilter } = useSpaceContext();
+  const navigateToDateFilter = useDateFilterNavigation();
+  const { statistics } = useFilteredMemoStats({ context: "collection", filter: memoFilter });
+  const today = getToday();
+  const selectedDay = filters.find((filter) => filter.factor === "displayTime")?.value;
+  const anchorDate = selectedDay && parseLocalDate(selectedDay) ? selectedDay : today;
+  const previousDate = findAdjacentEntryDate(anchorDate, statistics.activityStats, -1);
+  const nextDate = findAdjacentEntryDate(anchorDate, statistics.activityStats, 1);
+
+  // A new day is a new page: land at its top instead of at the end of the previous one.
+  const jumpToDate = (date: string) => {
+    navigateToDateFilter(date);
+    window.scrollTo({ top: 0 });
+  };
+
+  return (
+    <>
+      <Button variant="ghost" onClick={() => jumpToDate(today)}>
+        {t("calendar.back-to-today")}
       </Button>
-    </div>
+      <Button variant="ghost" disabled={!previousDate} onClick={() => previousDate && jumpToDate(previousDate)}>
+        <ArrowLeftIcon className="mr-1 w-4 h-auto" />
+        {t("calendar.previous-day")}
+      </Button>
+      {showBackToTop && <BackToTopButton />}
+      <Button variant="ghost" disabled={!nextDate} onClick={() => nextDate && jumpToDate(nextDate)}>
+        {t("calendar.next-day")}
+        <ArrowRightIcon className="ml-1 w-4 h-auto" />
+      </Button>
+    </>
   );
 };
 

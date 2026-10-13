@@ -17,6 +17,19 @@ export const formatMonthLabel = (month: string, locale: string): string =>
   dayjs(month).toDate().toLocaleString(locale, { year: "numeric", month: "long" });
 
 /**
+ * The closest day with entries strictly before (`direction` -1) or after (`direction` 1)
+ * `anchorDate`, or null when the data holds no such day — the caller then disables the jump.
+ */
+export const findAdjacentEntryDate = (anchorDate: string, activityStats: Record<string, number>, direction: -1 | 1): string | null => {
+  const dates = Object.keys(activityStats).sort();
+  if (direction > 0) {
+    return dates.find((date) => date > anchorDate) ?? null;
+  }
+  const earlier = dates.filter((date) => date < anchorDate);
+  return earlier.length > 0 ? earlier[earlier.length - 1] : null;
+};
+
+/**
  * The local midnight named by `YYYY-MM-DD`, or undefined for anything else — including
  * dates JS would silently roll forward (2026-02-30 → March 2).
  */

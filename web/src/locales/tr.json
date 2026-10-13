@@ -65,10 +65,13 @@
     "welcome-back": "Tekrar hoş geldiniz."
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Bu güne yeni not",
+    "next-day": "Next day",
     "next-year": "Sonraki yıl",
     "no-memos-in-month": "{{month}} ayında not yok",
     "no-memos-on-day": "Bu günde not yok",
+    "previous-day": "Previous day",
     "previous-year": "Önceki yıl",
     "select-month": "Ay seç"
   },

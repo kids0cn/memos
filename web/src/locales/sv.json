@@ -1039,10 +1039,13 @@
     "open-memo": "Öppna PM"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nytt PM denna dag",
+    "next-day": "Next day",
     "next-year": "Nästa år",
     "no-memos-in-month": "Inga PM i {{month}}",
     "no-memos-on-day": "Inga PM denna dag",
+    "previous-day": "Previous day",
     "previous-year": "Föregående år",
     "select-month": "Välj månad"
   },

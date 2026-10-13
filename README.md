@@ -50,6 +50,17 @@ See the [upgrade requirements](store/migration/README.md) for earlier versions.
 
 Save pages, selections, and images from your browser straight into Memos as source-linked Markdown. Get the [Memos Web Clipper](https://usememos.com/web-clipper) for [Chrome](https://chromewebstore.google.com/detail/memos-web-clipper/nebaoebnljalfegiidibihhkebeiklbl) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/memos-web-clipper/).
 
+| 日期 | 改动 | 状态 |
+|------|------|------|
+| 2026-10-13 | 底部日期导航条：列表末尾「回到今天 / ← 上一天 / 回到顶部 / 下一天 →」，按相邻**有内容的日期**跳转且日历窗口同步（46 locale 同步） | ✅ |
+| 2026-10-13 | 修手机端日历月份丢失：抽屉关闭会卸载侧栏 → 月份改由 URL 日期筛选派生，浏览 override 提升到 AppSidebarContext | ✅ |
+| 2026-10-12 | 日期选择器弹层三级缩放导航（日→月→年，点年份直跳 2013，`0e1f7f43e` 补记） | ✅ |
+| 2026-10-12 | 侧栏日历：标题「年月」点选日期（DayPicker）+「只显示有日记的日期」开关（跳空月/空白天占位，localStorage 持久） | ✅ |
+| 2026-10-12 | 本地构建管线 deploy-local.sh + install-artifact.sh（服务器零编译，分片上传断连重试） | ✅ |
+| 2026-10-12 | fork 立项（kids0cn/memos）+ README 台账 + deploy/deploy.sh 管线 | ✅ |
+| 2026-10-12 | 运维加固：运行时迁 /var/lib/shellcrash（代理层，详见服务器 skill shellcrash-proxy） | ✅ |
+| 2026-10-11 | 部署基线：源码构建修复（pnpm release 烤入前端）+ systemd 三件套（memos/cloudflared/代理） | ✅ |
+
 ## Sponsors
 
 <p>

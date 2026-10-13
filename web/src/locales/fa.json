@@ -1020,10 +1020,13 @@
     "open-memo": "یادداشت باز"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "یادداشت جدید در این روز",
+    "next-day": "Next day",
     "next-year": "سال آینده",
     "no-memos-in-month": "هیچ یادداشتی در {{month}} وجود ندارد",
     "no-memos-on-day": "هیچ یادداشتی در این روز وجود ندارد",
+    "previous-day": "Previous day",
     "previous-year": "سال قبل",
     "select-month": "ماه را انتخاب کنید"
   },

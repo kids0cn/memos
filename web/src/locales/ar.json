@@ -1020,10 +1020,13 @@
     "open-memo": "فتح المذكرة"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "مذكرة جديدة في هذا اليوم",
+    "next-day": "Next day",
     "next-year": "العام القادم",
     "no-memos-in-month": "لا توجد مذكرات في {{month}}",
     "no-memos-on-day": "لا توجد مذكرات في هذا اليوم",
+    "previous-day": "Previous day",
     "previous-year": "العام الماضي",
     "select-month": "اختر الشهر"
   },

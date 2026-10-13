@@ -65,10 +65,13 @@
     "welcome-back": "Yenidən xoş gəlmisiniz."
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Bu gün üçün yeni qeyd",
+    "next-day": "Next day",
     "next-year": "Növbəti il",
     "no-memos-in-month": "{{month}} ayında qeyd yoxdur",
     "no-memos-on-day": "Bu gün qeyd yoxdur",
+    "previous-day": "Previous day",
     "previous-year": "Əvvəlki il",
     "select-month": "Ay seç"
   },

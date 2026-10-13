@@ -1039,10 +1039,13 @@
     "open-memo": "Åpne notat"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Nytt notat denne dagen",
+    "next-day": "Next day",
     "next-year": "Neste år",
     "no-memos-in-month": "Ingen notater i {{month}}",
     "no-memos-on-day": "Ingen notater denne dagen",
+    "previous-day": "Previous day",
     "previous-year": "Forrige år",
     "select-month": "Velg måned"
   },

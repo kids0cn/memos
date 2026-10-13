@@ -1020,10 +1020,13 @@
     "open-memo": "Mở bản ghi nhớ"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Ghi chú mới trong ngày này",
+    "next-day": "Next day",
     "next-year": "Năm tới",
     "no-memos-in-month": "Không có ghi chú nào trong {{month}}",
     "no-memos-on-day": "Không có ghi chú nào trong ngày này",
+    "previous-day": "Previous day",
     "previous-year": "Năm trước",
     "select-month": "Chọn tháng"
   },

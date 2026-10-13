@@ -1039,10 +1039,13 @@
     "open-memo": "Abrir memorando"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Novo memorando neste dia",
+    "next-day": "Next day",
     "next-year": "Próximo ano",
     "no-memos-in-month": "Nenhum memorando em {{month}}",
     "no-memos-on-day": "Nenhum memorando neste dia",
+    "previous-day": "Previous day",
     "previous-year": "Ano anterior",
     "select-month": "Selecione o mês"
   },

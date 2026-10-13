@@ -1020,10 +1020,13 @@
     "open-memo": "ओपन मेमो"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "इस दिन नया मेमो",
+    "next-day": "Next day",
     "next-year": "अगले साल",
     "no-memos-in-month": "{{month}} में कोई मेमो नहीं",
     "no-memos-on-day": "इस दिन कोई मेमो नहीं",
+    "previous-day": "Previous day",
     "previous-year": "पिछला साल",
     "select-month": "महीना चुनें"
   },

@@ -1039,10 +1039,13 @@
     "open-memo": "Отваряне на бележка"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Нова бележка на този ден",
+    "next-day": "Next day",
     "next-year": "Следващата година",
     "no-memos-in-month": "Няма бележки в {{month}}",
     "no-memos-on-day": "Няма бележки в този ден",
+    "previous-day": "Previous day",
     "previous-year": "Предишна година",
     "select-month": "Изберете месец"
   },

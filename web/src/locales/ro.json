@@ -1039,10 +1039,13 @@
     "open-memo": "Deschide memo"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Memo nou în această zi",
+    "next-day": "Next day",
     "next-year": "Anul viitor",
     "no-memos-in-month": "Niciun memento în {{month}}",
     "no-memos-on-day": "Niciun memento în această zi",
+    "previous-day": "Previous day",
     "previous-year": "Anul precedent",
     "select-month": "Selectați luna"
   },

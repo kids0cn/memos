@@ -1039,10 +1039,13 @@
     "open-memo": "Відкрити мемо"
   },
   "calendar": {
+    "back-to-today": "Back to today",
     "new-memo-on-day": "Нова нотатка цього дня",
+    "next-day": "Next day",
     "next-year": "Наступного року",
     "no-memos-in-month": "Немає нотаток у {{month}}",
     "no-memos-on-day": "Немає нотаток у цей день",
+    "previous-day": "Previous day",
     "previous-year": "Попередній рік",
     "select-month": "Виберіть місяць"
   },
