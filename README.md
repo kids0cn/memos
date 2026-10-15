@@ -52,6 +52,7 @@ Save pages, selections, and images from your browser straight into Memos as sour
 
 | 日期 | 改动 | 状态 |
 |------|------|------|
+| 2026-10-15 | PAT 401 排查（整行解析失败=静默401机制）+ 容错降级修复（PR [usememos/memos#6478](https://github.com/usememos/memos/pull/6478)）+ **全量同步上游 1511fd1**（30 提交：CVE×2、SSRF、Echo→net/http），schema 0.31.8→26.10.1；详见 `docs/deploy-logs/2026-10-15.md` | ✅ |
 | 2026-10-13 | 底部日期导航条：列表末尾「回到今天 / ← 上一天 / 回到顶部 / 下一天 →」，按相邻**有内容的日期**跳转且日历窗口同步（46 locale 同步） | ✅ |
 | 2026-10-13 | 修手机端日历月份丢失：抽屉关闭会卸载侧栏 → 月份改由 URL 日期筛选派生，浏览 override 提升到 AppSidebarContext | ✅ |
 | 2026-10-12 | 日期选择器弹层三级缩放导航（日→月→年，点年份直跳 2013，`0e1f7f43e` 补记） | ✅ |
